@@ -12,7 +12,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-const TCRO_SEED_FLAG = 'tcro_seeded_v1';
+const TCRO_SEED_FLAG          = 'tcro_seeded_v1';
+const TCRO_SEED_ARTICLES_FLAG = 'tcro_seeded_articles_v1';
 
 add_action( 'admin_init', 'tcro_maybe_seed', 20 );
 
@@ -20,33 +21,73 @@ function tcro_maybe_seed() : void {
 
 	$force = current_user_can( 'manage_options' ) && ! empty( $_GET['tcro_force_seed'] );
 
-	if ( ! $force && get_option( TCRO_SEED_FLAG ) ) {
-		return;
-	}
 	if ( ! function_exists( 'update_field' ) ) {
 		return; // ACF pas encore chargé.
 	}
 
-	tcro_seed_options();
-	tcro_seed_membres();
-	tcro_seed_tarifs();
-	tcro_seed_evenements();
+	// Premier seed complet OU force : on (re)crée tout.
+	if ( $force || ! get_option( TCRO_SEED_FLAG ) ) {
 
-	update_option( TCRO_SEED_FLAG, time() );
-	set_transient( 'tcro_seeded_notice', 1, 30 );
+		if ( $force ) {
+			tcro_cleanup_seeded_posts();
+		}
+
+		tcro_seed_options();
+		tcro_seed_membres();
+		tcro_seed_tarifs();
+		tcro_seed_evenements();
+		tcro_seed_articles();
+
+		update_option( TCRO_SEED_FLAG,          time() );
+		update_option( TCRO_SEED_ARTICLES_FLAG, time() );
+		set_transient( 'tcro_seeded_notice', 1, 30 );
+		return;
+	}
+
+	// Gate spécifique aux articles : si le main seed a déjà tourné mais pas les articles,
+	// on ajoute juste les articles (idempotent — skip si déjà en base).
+	if ( ! get_option( TCRO_SEED_ARTICLES_FLAG ) ) {
+		tcro_seed_articles();
+		update_option( TCRO_SEED_ARTICLES_FLAG, time() );
+		set_transient( 'tcro_seeded_articles_notice', 1, 30 );
+	}
 }
 
 add_action( 'admin_notices', function () {
-	if ( ! get_transient( 'tcro_seeded_notice' ) ) return;
-	delete_transient( 'tcro_seeded_notice' );
-	printf(
-		'<div class="notice notice-success is-dismissible"><p><strong>TC Riez Océan :</strong> contenus par défaut créés. Tu peux les personnaliser dans <a href="%s">Contenu du site</a>, <a href="%s">Équipe</a>, <a href="%s">Tarifs</a>, <a href="%s">Agenda</a>.</p></div>',
-		esc_url( admin_url( 'admin.php?page=tcro-options' ) ),
-		esc_url( admin_url( 'edit.php?post_type=tcro_membre' ) ),
-		esc_url( admin_url( 'edit.php?post_type=tcro_tarif' ) ),
-		esc_url( admin_url( 'edit.php?post_type=tcro_evenement' ) )
-	);
+	if ( get_transient( 'tcro_seeded_notice' ) ) {
+		delete_transient( 'tcro_seeded_notice' );
+		printf(
+			'<div class="notice notice-success is-dismissible"><p><strong>TC Riez Océan :</strong> contenus par défaut créés. Tu peux les personnaliser dans <a href="%s">Contenu du site</a>, <a href="%s">Équipe</a>, <a href="%s">Tarifs</a>, <a href="%s">Agenda</a>, <a href="%s">Articles</a>.</p></div>',
+			esc_url( admin_url( 'admin.php?page=tcro-options' ) ),
+			esc_url( admin_url( 'edit.php?post_type=tcro_membre' ) ),
+			esc_url( admin_url( 'edit.php?post_type=tcro_tarif' ) ),
+			esc_url( admin_url( 'edit.php?post_type=tcro_evenement' ) ),
+			esc_url( admin_url( 'edit.php' ) )
+		);
+	}
+	if ( get_transient( 'tcro_seeded_articles_notice' ) ) {
+		delete_transient( 'tcro_seeded_articles_notice' );
+		printf(
+			'<div class="notice notice-success is-dismissible"><p><strong>TC Riez Océan :</strong> 4 articles de démonstration ajoutés. Ajoute les photos via <code>?tcro_fetch_stock=1</code> puis visite la page d\'accueil.</p></div>'
+		);
+	}
 } );
+
+/**
+ * Supprime définitivement tous les posts marqués _tcro_seed (force reseed).
+ */
+function tcro_cleanup_seeded_posts() : void {
+	$ids = get_posts( [
+		'post_type'      => [ 'tcro_membre', 'tcro_tarif', 'tcro_evenement', 'post' ],
+		'post_status'    => 'any',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'meta_query'     => [ [ 'key' => '_tcro_seed', 'value' => 1 ] ],
+	] );
+	foreach ( $ids as $id ) {
+		wp_delete_post( $id, true );
+	}
+}
 
 /* ─────────────────────────────────────────
  *  ACF OPTIONS
@@ -332,5 +373,69 @@ function tcro_seed_evenements() : void {
 		update_field( 'sous_titre', $e['sous'],  $post_id );
 		update_field( 'badge',      $e['badge'], $post_id );
 		update_field( 'highlight',  $e['highlight'], $post_id );
+	}
+}
+
+/* ─────────────────────────────────────────
+ *  ARTICLES (post type `post`)
+ * ───────────────────────────────────────── */
+function tcro_seed_articles() : void {
+
+	$articles = [
+		[
+			'titre'    => 'Le TCRO a accueilli l\'équipe de tennis fauteuil pour Paris 2024',
+			'cat'      => 'Handisport',
+			'date'     => '-120 days',
+			'content'  => "<p>En amont des Jeux Paralympiques de Paris 2024, le TC Riez Océan a eu l'honneur d'accueillir une délégation de l'équipe de France de tennis fauteuil pour un stage de préparation de cinq jours.</p>\n\n<p>Les courts couverts du club ont été entièrement privatisés pour permettre aux athlètes de s'entraîner dans des conditions optimales, avec un accompagnement technique et physique de haut niveau. Une rencontre conviviale a été organisée avec les licenciés du club, qui ont pu échanger avec les para-athlètes et assister à une démonstration exceptionnelle.</p>\n\n<h2>Un club engagé pour le handisport</h2>\n\n<p>Labellisé « Club Handisport », le TCRO est le home club de Gaëtan Menguy, para-athlète de haut niveau, et s'investit depuis plusieurs années dans le développement du tennis fauteuil en Vendée. L'accueil de cette équipe nationale s'inscrit dans la continuité de cet engagement.</p>\n\n<p>Fabien Coulombeau, président du club, a tenu à remercier l'ensemble des bénévoles qui ont rendu ce stage possible : « Voir nos courts investis par des champions qui allaient quelques semaines plus tard représenter la France aux JO, c'est une immense fierté pour tout le club. »</p>",
+		],
+		[
+			'titre'    => 'La finale de la Coupe de Vendée au TCRO',
+			'cat'      => 'Compétition',
+			'date'     => '-85 days',
+			'content'  => "<p>Le TC Riez Océan a accueilli le week-end dernier la finale départementale de la Coupe de Vendée. Une journée dense, ensoleillée, et une belle vitrine pour le club devant un public nombreux venu de toute la côte.</p>\n\n<h2>Des matchs serrés jusqu'au bout</h2>\n\n<p>Les équipes du TCRO ont brillamment défendu leurs couleurs face aux clubs voisins. Les finales femmes et hommes se sont jouées en trois sets, avec plusieurs jeux décisifs qui ont tenu les spectateurs en haleine jusqu'au dernier point.</p>\n\n<p>Le Court Philippe Chatrier, court central du club, a vibré tout l'après-midi au rythme des échanges. La cérémonie de remise des prix, organisée en fin de journée, a permis de saluer le niveau technique et l'esprit sportif remarquables des compétiteurs.</p>\n\n<h2>Merci aux bénévoles</h2>\n\n<p>Rien n'aurait été possible sans la mobilisation exceptionnelle des bénévoles du club : arbitrage, accueil, buvette, logistique. Un grand merci à tous les adhérents qui ont donné de leur temps pour faire de cette journée une réussite.</p>",
+		],
+		[
+			'titre'    => 'Le TMC Femmes du samedi 18 avril',
+			'cat'      => 'Tournoi',
+			'date'     => '-30 days',
+			'content'  => "<p>Samedi 18 avril, le TCRO organisait son traditionnel TMC Femmes — Tournoi Multi-Chances réservé aux joueuses classées 40 à 15/2. Une journée 100 % féminine, avec 24 participantes engagées.</p>\n\n<h2>Format et déroulement</h2>\n\n<p>Le TMC permet à chaque joueuse de disputer au minimum trois matchs dans la journée, quel que soit son niveau. Les matchs se sont enchaînés sur nos courts couverts et extérieurs de 9 h à 18 h, dans une ambiance conviviale mais très engagée sur le plan sportif.</p>\n\n<h2>Un moment fort pour le tennis féminin</h2>\n\n<p>Céline Bonnin, enseignante du club, a coordonné l'événement : « C'est toujours un rendez-vous qu'on attend avec impatience. Le TMC donne l'occasion aux joueuses de se rencontrer dans un cadre compétitif sans la pression d'un tournoi classique. On voit de belles progressions match après match. »</p>\n\n<p>Félicitations à toutes les participantes, et rendez-vous pour la prochaine édition cet automne !</p>",
+		],
+		[
+			'titre'    => 'Le tennis santé au TCRO',
+			'cat'      => 'Tennis santé',
+			'date'     => '-10 days',
+			'content'  => "<p>Le TCRO est labellisé « Tennis Santé » par la Fédération Française de Tennis. Ce programme, encore méconnu du grand public, s'adresse aux personnes atteintes de pathologies chroniques ou en phase de rééducation, mais aussi à toute personne souhaitant pratiquer le tennis dans une logique de bien-être et de santé.</p>\n\n<h2>À qui s'adresse le tennis santé ?</h2>\n\n<ul>\n<li>Personnes atteintes de maladies chroniques (diabète, cardiopathies, cancers…)</li>\n<li>Personnes en surpoids ou en reprise d'activité</li>\n<li>Séniors souhaitant préserver leur mobilité et leur équilibre</li>\n<li>Toute personne sur prescription médicale d'activité physique adaptée</li>\n</ul>\n\n<h2>Comment se déroulent les séances ?</h2>\n\n<p>Les séances sont encadrées par nos enseignants diplômés, formés spécifiquement au tennis santé. Elles se déroulent en petits groupes de 4 à 6 personnes, avec un travail progressif et adapté à chacun : déplacements, coordination, renforcement musculaire doux, gestes techniques simplifiés.</p>\n\n<p>Aucun niveau technique n'est requis : le programme est ouvert aux débutants comme aux anciens joueurs. L'objectif n'est pas la performance mais le plaisir de bouger et les bénéfices santé.</p>\n\n<h2>Tarifs et inscription</h2>\n\n<p>Le tennis santé est inclus dans la plupart de nos formules d'adhésion. Pour plus d'informations ou pour vous inscrire, contactez-nous par téléphone au 02 51 54 46 81 ou par email.</p>",
+		],
+	];
+
+	foreach ( $articles as $a ) {
+
+		// Idempotent : skip si déjà présent.
+		$exists = new WP_Query( [
+			'post_type'      => 'post',
+			'title'          => $a['titre'],
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		] );
+		if ( $exists->have_posts() ) {
+			continue;
+		}
+
+		// Catégorie : crée si absente.
+		$cat_id = get_cat_ID( $a['cat'] );
+		if ( ! $cat_id ) {
+			$cat_id = wp_create_category( $a['cat'] );
+		}
+
+		$post_id = wp_insert_post( [
+			'post_type'     => 'post',
+			'post_title'    => $a['titre'],
+			'post_content'  => $a['content'],
+			'post_status'   => 'publish',
+			'post_category' => $cat_id ? [ $cat_id ] : [],
+			'post_date'     => wp_date( 'Y-m-d H:i:s', strtotime( $a['date'] ) ),
+			'meta_input'    => [ '_tcro_seed' => 1 ],
+		] );
 	}
 }

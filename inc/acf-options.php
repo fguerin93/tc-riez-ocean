@@ -32,6 +32,7 @@ add_action( 'acf/init', function () {
 		'tcro-contact'    => [ 'Accueil — Contact',      'Contact' ],
 		'tcro-tenup'      => [ 'Bandeau Ten\'Up',        'Bandeau Ten\'Up' ],
 		'tcro-equipe'     => [ 'Accueil — Équipe',       'Équipe' ],
+		'tcro-articles'   => [ 'Accueil — Articles',     'Articles (intro)' ],
 		'tcro-global'     => [ 'Réglages globaux',       'Global' ],
 	];
 

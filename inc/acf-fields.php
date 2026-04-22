@@ -24,6 +24,7 @@ add_action( 'acf/init', function () {
 		'title'  => 'Hero (accueil)',
 		'location' => [ [ [ 'param' => 'options_page', 'operator' => '==', 'value' => 'tcro-hero' ] ] ],
 		'fields' => [
+			[ 'key'=>'field_tcro_hero_image',      'label'=>'Image de fond', 'name'=>'hero_image', 'type'=>'image', 'return_format'=>'array', 'preview_size'=>'medium', 'instructions'=>'Photo plein écran du hero. Laisser vide pour utiliser un dégradé par défaut.' ],
 			[ 'key'=>'field_tcro_hero_kicker',     'label'=>'Kicker (petit texte au-dessus)', 'name'=>'hero_kicker', 'type'=>'text', 'default_value'=>'Vendée Atlantique · Depuis 1980' ],
 			[ 'key'=>'field_tcro_hero_titre',      'label'=>'Titre', 'name'=>'hero_titre', 'type'=>'textarea', 'rows'=>2, 'default_value'=>'TC Riez Océan,' ],
 			[ 'key'=>'field_tcro_hero_titre_em',   'label'=>'Titre (partie colorée)', 'name'=>'hero_titre_em', 'type'=>'text', 'default_value'=>'le tennis vivant' ],
@@ -128,10 +129,10 @@ add_action( 'acf/init', function () {
 			[ 'key'=>'field_tcro_activites_titre_em','label'=>'Titre (partie colorée)', 'name'=>'activites_titre_em', 'type'=>'text', 'default_value'=>'tous les profils' ],
 			[ 'key'=>'field_tcro_activites_items', 'label'=>'Activités', 'name'=>'activites_items', 'type'=>'repeater', 'button_label'=>'Ajouter une activité',
 				'sub_fields' => [
-					[ 'key'=>'field_tcro_activites_icone', 'label'=>'Icône (emoji)', 'name'=>'icone', 'type'=>'text' ],
-					[ 'key'=>'field_tcro_activites_titre', 'label'=>'Titre', 'name'=>'titre', 'type'=>'text' ],
-					[ 'key'=>'field_tcro_activites_desc',  'label'=>'Description', 'name'=>'description', 'type'=>'textarea', 'rows'=>3 ],
-					[ 'key'=>'field_tcro_activites_tag',   'label'=>'Tag', 'name'=>'tag', 'type'=>'text' ],
+					[ 'key'=>'field_tcro_activites_item_icone', 'label'=>'Icône (emoji)', 'name'=>'icone', 'type'=>'text' ],
+					[ 'key'=>'field_tcro_activites_item_titre', 'label'=>'Titre', 'name'=>'titre', 'type'=>'text' ],
+					[ 'key'=>'field_tcro_activites_item_desc',  'label'=>'Description', 'name'=>'description', 'type'=>'textarea', 'rows'=>3 ],
+					[ 'key'=>'field_tcro_activites_item_tag',   'label'=>'Tag', 'name'=>'tag', 'type'=>'text' ],
 				],
 			],
 		],
@@ -242,6 +243,35 @@ add_action( 'acf/init', function () {
 					],
 				],
 			],
+		],
+	] );
+
+	/* ─────────────────────────────────────────
+	 *  ARTICLES (Options — intro)
+	 * ───────────────────────────────────────── */
+	acf_add_local_field_group( [
+		'key'    => 'group_tcro_articles',
+		'title'  => 'Articles (intro)',
+		'location' => [ [ [ 'param' => 'options_page', 'operator' => '==', 'value' => 'tcro-articles' ] ] ],
+		'fields' => [
+			[ 'key'=>'field_tcro_articles_kicker',   'label'=>'Kicker',    'name'=>'articles_kicker',   'type'=>'text', 'default_value'=>'Actualités du club' ],
+			[ 'key'=>'field_tcro_articles_titre',    'label'=>'Titre',     'name'=>'articles_titre',    'type'=>'text', 'default_value'=>'Les dernières' ],
+			[ 'key'=>'field_tcro_articles_titre_em', 'label'=>'Titre (suite)', 'name'=>'articles_titre_em', 'type'=>'text', 'default_value'=>'nouvelles du TCRO' ],
+			[ 'key'=>'field_tcro_articles_count',    'label'=>'Nb d\'articles à afficher', 'name'=>'articles_count', 'type'=>'number', 'default_value'=>4, 'min'=>1, 'max'=>8 ],
+			[ 'key'=>'field_tcro_articles_cta_lbl',  'label'=>'CTA — texte', 'name'=>'articles_cta_lbl', 'type'=>'text', 'default_value'=>'Tous les articles' ],
+			[ 'key'=>'field_tcro_articles_cta_url',  'label'=>'CTA — URL',   'name'=>'articles_cta_url', 'type'=>'text', 'instructions'=>'Laisser vide pour masquer le bouton.' ],
+		],
+	] );
+
+	/* ─────────────────────────────────────────
+	 *  POST : Gallery
+	 * ───────────────────────────────────────── */
+	acf_add_local_field_group( [
+		'key'    => 'group_tcro_post_gallery',
+		'title'  => 'Galerie photo',
+		'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'post' ] ] ],
+		'fields' => [
+			[ 'key'=>'field_tcro_post_gallery', 'label'=>'Galerie', 'name'=>'gallery', 'type'=>'gallery', 'return_format'=>'array', 'preview_size'=>'medium', 'instructions'=>'Ajouter plusieurs photos — affichées en grille sous le contenu.' ],
 		],
 	] );
 

@@ -31,8 +31,8 @@ $items     = tcro_option( 'activites_items', [] );
 				<?php if ( ! empty( $item['icone'] ) ) : ?>
 				<span class="text-3xl block mb-5"><?php echo esc_html( $item['icone'] ); ?></span>
 				<?php endif; ?>
-				<h3 class="font-display font-semibold text-ink text-lg mb-2"><?php echo esc_html( $item['titre'] ); ?></h3>
-				<p class="text-sm leading-relaxed text-ink/70"><?php echo esc_html( $item['description'] ); ?></p>
+				<h3 class="font-display font-semibold text-ink text-lg mb-2"><?php echo esc_html( $item['titre'] ?? '' ); ?></h3>
+				<p class="text-sm leading-relaxed text-ink/70"><?php echo esc_html( $item['description'] ?? '' ); ?></p>
 				<?php if ( ! empty( $item['tag'] ) ) : ?>
 					<span class="inline-block mt-4 text-[10px] tracking-[.12em] uppercase text-primary border border-primary px-2.5 py-1"><?php echo esc_html( $item['tag'] ); ?></span>
 				<?php endif; ?>

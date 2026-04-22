@@ -10,6 +10,7 @@ get_header();
 
 <?php get_template_part( 'template-parts/home/hero' ); ?>
 <?php get_template_part( 'template-parts/home/about' ); ?>
+<?php get_template_part( 'template-parts/home/articles' ); ?>
 <?php get_template_part( 'template-parts/home/equipe' ); ?>
 <?php get_template_part( 'template-parts/home/courts' ); ?>
 <?php get_template_part( 'template-parts/home/activites' ); ?>

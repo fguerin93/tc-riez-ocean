@@ -45,15 +45,18 @@ $groupes = [
 			if ( ! $query->have_posts() ) { continue; }
 
 			$is_pedago = ( $slug === 'pedagogique' );
-			$grid_cls  = $is_pedago ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5';
+			$grid_cls  = $is_pedago
+				? 'grid-cols-2 md:grid-cols-3 gap-5 md:gap-7'
+				: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3';
+			$variant   = $is_pedago ? 'portrait' : 'compact';
 		?>
-			<div class="mb-8 reveal">
+			<div class="<?php echo $is_pedago ? 'mb-14' : 'mb-8'; ?> reveal">
 				<p class="text-primary-light text-[10px] tracking-[.2em] uppercase font-medium mb-5 flex items-center gap-2">
 					<span class="w-4 h-px bg-primary-light"></span><?php echo esc_html( $label ); ?>
 				</p>
-				<div class="grid <?php echo esc_attr( $grid_cls ); ?> gap-3">
+				<div class="grid <?php echo esc_attr( $grid_cls ); ?>">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-						<?php get_template_part( 'template-parts/cards/membre', null, [ 'variant' => $is_pedago ? 'detail' : 'compact' ] ); ?>
+						<?php get_template_part( 'template-parts/cards/membre', null, [ 'variant' => $variant ] ); ?>
 					<?php endwhile; wp_reset_postdata(); ?>
 				</div>
 			</div>
