@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── Reveal on scroll ───────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+/* ───────── Court lines (subtil pattern dans le hero) ───────── */
+.court-lines {
+  background:
+    linear-gradient(to top,  rgba(245,237,214,.10) 0px, rgba(245,237,214,.10) 1px, transparent 1px) 0 82%/100% 1px no-repeat,
+    linear-gradient(to top,  rgba(245,237,214,.06) 0px, rgba(245,237,214,.06) 1px, transparent 1px) 0 55%/100% 1px no-repeat,
+    linear-gradient(to bottom, rgba(245,237,214,.16) 0px, rgba(245,237,214,.16) 2px, transparent 2px) 0 50%/100% 2px no-repeat,
+    linear-gradient(to right, rgba(245,237,214,.08) 0px, rgba(245,237,214,.08) 1px, transparent 1px) 50%/1px 100% no-repeat;
+}
+
+/* ───────── Burger ───────── */
+.burger span { transition: transform .28s, opacity .28s; }
+.burger.x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.x span:nth-child(2) { opacity: 0; }
+.burger.x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ───────── Mobile menu ───────── */
+#mmenu { transition: opacity .28s ease, transform .28s ease; }
+#mmenu.closed { opacity: 0; transform: translateY(-10px); pointer-events: none; display: flex; }
+#mmenu.open   { opacity: 1; transform: none; pointer-events: all; }
+
+/* ───────── WYSIWYG / paragraphes ACF ───────── */
+.font-serif p { margin-bottom: 1rem; }
+.font-serif p:last-child { margin-bottom: 0; }
+
+/* Liens dans le wysiwyg "about" : accent discret. */
+.text-ink\/75 a { color: #E63329; text-decoration: none; border-bottom: 1px solid rgba(230,51,41,.35); transition: color .2s, border-color .2s; }
+.text-ink\/75 a:hover { color: #B8261F; border-color: #B8261F; }

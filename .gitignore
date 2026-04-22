@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.env.local
+
+# Le CSS compilé est VOLONTAIREMENT committé pour pouvoir uploader le thème
+# directement sur IONOS sans build sur le serveur.
+# !assets/css/main.css
