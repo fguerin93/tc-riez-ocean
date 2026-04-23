@@ -43,7 +43,7 @@ module.exports = {
         cream: '#FAF7F0', // blanc cassé
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
+        display: ['"Poppins"', 'sans-serif'],
         serif:   ['"Cormorant Garamond"', 'serif'],
         sans:    ['"DM Sans"', 'sans-serif'],
       },

@@ -20,7 +20,7 @@ $tarifs = get_posts( [
 ?>
 
 <section id="tarifs" class="bg-ocean py-20 md:py-28">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 
 		<div class="text-center mb-12 reveal">
 			<?php if ( $kicker ) : ?>

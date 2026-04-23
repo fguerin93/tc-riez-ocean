@@ -18,7 +18,7 @@ $form_ok   = isset( $_GET['contact_sent'] ) && $_GET['contact_sent'] === '1';
 ?>
 
 <section id="contact" class="py-20 md:py-28 bg-sand text-ink">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
 			<div class="reveal">

@@ -30,7 +30,7 @@ if ( ! $cta_url ) {
 ?>
 
 <section id="articles" class="bg-ocean py-20 md:py-24">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16">
 
 		<!-- Header : kicker gauche / titre droite -->
 		<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14 reveal">

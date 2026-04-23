@@ -11,7 +11,7 @@ $links = tcro_option( 'tenup_links', [] );
 ?>
 
 <div style="background:#0A1524; border-top:1px solid rgba(230,51,41,.25); border-bottom:1px solid rgba(230,51,41,.25);">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
 		<div class="flex items-center gap-4">
 			<div class="w-10 h-10 rounded-sm bg-primary/20 flex items-center justify-center shrink-0">
 				<span class="text-xl">🎾</span>

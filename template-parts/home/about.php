@@ -17,7 +17,7 @@ $cta_url     = tcro_option( 'about_cta_url', 'https://tenup.fft.fr/club/61850433
 ?>
 
 <section id="about" class="bg-cream text-ink py-20 md:py-28">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center reveal">
 
 			<div>

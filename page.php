@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_header();
 ?>
-<main class="pt-32 pb-20 px-5 sm:px-8 md:px-12">
+<main class="pt-32 pb-20 px-5 sm:px-8 md:px-16">
 	<div class="max-w-4xl mx-auto">
 		<?php while ( have_posts() ) : the_post(); ?>
 			<h1 class="font-display font-bold text-sand text-3xl md:text-4xl mb-6"><?php the_title(); ?></h1>

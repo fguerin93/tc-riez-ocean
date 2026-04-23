@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 const TCRO_SEED_FLAG          = 'tcro_seeded_v1';
 const TCRO_SEED_ARTICLES_FLAG = 'tcro_seeded_articles_v1';
+const TCRO_SEED_MARQUEE_FLAG  = 'tcro_seeded_marquee_v1';
 
 add_action( 'admin_init', 'tcro_maybe_seed', 20 );
 
@@ -37,19 +38,24 @@ function tcro_maybe_seed() : void {
 		tcro_seed_tarifs();
 		tcro_seed_evenements();
 		tcro_seed_articles();
+		tcro_seed_marquee();
 
 		update_option( TCRO_SEED_FLAG,          time() );
 		update_option( TCRO_SEED_ARTICLES_FLAG, time() );
+		update_option( TCRO_SEED_MARQUEE_FLAG,  time() );
 		set_transient( 'tcro_seeded_notice', 1, 30 );
 		return;
 	}
 
-	// Gate spécifique aux articles : si le main seed a déjà tourné mais pas les articles,
-	// on ajoute juste les articles (idempotent — skip si déjà en base).
+	// Ajouts incrémentaux (idempotents — skippent ce qui est déjà en base).
 	if ( ! get_option( TCRO_SEED_ARTICLES_FLAG ) ) {
 		tcro_seed_articles();
 		update_option( TCRO_SEED_ARTICLES_FLAG, time() );
 		set_transient( 'tcro_seeded_articles_notice', 1, 30 );
+	}
+	if ( ! get_option( TCRO_SEED_MARQUEE_FLAG ) ) {
+		tcro_seed_marquee();
+		update_option( TCRO_SEED_MARQUEE_FLAG, time() );
 	}
 }
 
@@ -438,4 +444,24 @@ function tcro_seed_articles() : void {
 			'meta_input'    => [ '_tcro_seed' => 1 ],
 		] );
 	}
+}
+
+/* ─────────────────────────────────────────
+ *  MARQUEE (bandeau défilant — options)
+ * ───────────────────────────────────────── */
+function tcro_seed_marquee() : void {
+
+	// Ne pas écraser si l'admin a déjà configuré.
+	if ( ! empty( get_field( 'marquee_words', 'option' ) ) ) {
+		return;
+	}
+
+	update_field( 'marquee_theme', 'light', 'option' );
+	update_field( 'marquee_words', [
+		[ 'mot' => 'Le tennis vivant' ],
+		[ 'mot' => 'Depuis 1980' ],
+		[ 'mot' => 'Tennis · Pickleball · Santé' ],
+		[ 'mot' => 'Vendée Atlantique' ],
+		[ 'mot' => 'TC Riez Océan' ],
+	], 'option' );
 }

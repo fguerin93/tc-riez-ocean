@@ -65,7 +65,7 @@ $coachs = get_posts( [
 	</div>
 
 	<!-- Contenu principal -->
-	<div class="relative z-10 flex-1 flex flex-col justify-between pt-28 md:pt-32 pb-4 md:pb-6 px-5 sm:px-8 md:px-14">
+	<div class="relative z-10 flex-1 w-full max-w-[1520px] mx-auto flex flex-col justify-between pt-28 md:pt-32 pb-4 md:pb-6 px-5 sm:px-8 md:px-16">
 
 		<!-- Top row : avatars coachs + kicker -->
 		<div class="flex items-start justify-between gap-6 animate-fade-in">
@@ -147,20 +147,22 @@ $coachs = get_posts( [
 
 	<!-- Stats strip -->
 	<?php if ( ! empty( $stats ) ) : ?>
-	<div class="relative z-10 flex items-center gap-6 sm:gap-10 px-5 sm:px-8 md:px-14 py-4 md:py-5 border-t border-sand/15"
+	<div class="relative z-10 border-t border-sand/15"
 	     style="background:rgba(10,21,36,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
-		<?php foreach ( $stats as $i => $stat ) : ?>
-			<?php if ( $i > 0 ) : ?><div class="w-px h-8 bg-sand/20"></div><?php endif; ?>
-			<div class="flex items-baseline gap-2.5">
-				<span class="font-display font-bold text-sand leading-none" style="font-size:clamp(1.4rem,3.2vw,2rem)"><?php echo esc_html( $stat['valeur'] ?? '' ); ?></span>
-				<span class="text-sand/50 text-[10px] tracking-[.18em] uppercase"><?php echo esc_html( $stat['label'] ?? '' ); ?></span>
-			</div>
-		<?php endforeach; ?>
+		<div class="max-w-[1520px] mx-auto flex items-center gap-6 sm:gap-10 px-5 sm:px-8 md:px-16 py-4 md:py-5">
+			<?php foreach ( $stats as $i => $stat ) : ?>
+				<?php if ( $i > 0 ) : ?><div class="w-px h-8 bg-sand/20"></div><?php endif; ?>
+				<div class="flex items-baseline gap-2.5">
+					<span class="font-display font-bold text-sand leading-none" style="font-size:clamp(1.4rem,3.2vw,2rem)"><?php echo esc_html( $stat['valeur'] ?? '' ); ?></span>
+					<span class="text-sand/50 text-[10px] tracking-[.18em] uppercase"><?php echo esc_html( $stat['label'] ?? '' ); ?></span>
+				</div>
+			<?php endforeach; ?>
 
-		<a href="#about" class="hidden md:flex items-center gap-2 ml-auto text-sand/45 hover:text-sand text-[10px] tracking-[.25em] uppercase transition-colors group">
-			<span>Explorer</span>
-			<span class="w-8 h-px bg-sand/30 group-hover:bg-sand transition-colors"></span>
-		</a>
+			<a href="#about" class="hidden md:flex items-center gap-2 ml-auto text-sand/45 hover:text-sand text-[10px] tracking-[.25em] uppercase transition-colors group">
+				<span>Explorer</span>
+				<span class="w-8 h-px bg-sand/30 group-hover:bg-sand transition-colors"></span>
+			</a>
+		</div>
 	</div>
 	<?php endif; ?>
 </section>

@@ -12,8 +12,8 @@ $annee      = date( 'Y' );
 ?>
 
 <!-- ───────── FOOTER ───────── -->
-<footer class="bg-ocean border-t border-sand/[.07] pt-12 pb-7 px-5 sm:px-8 md:px-12">
-	<div class="max-w-6xl mx-auto">
+<footer class="bg-ocean border-t border-sand/[.07] pt-12 pb-7 px-5 sm:px-8 md:px-16">
+	<div class="max-w-[1520px] mx-auto">
 		<div class="flex flex-col sm:flex-row justify-between gap-10 mb-10">
 			<div class="max-w-xs">
 				<span class="block font-display font-bold text-sand text-lg mb-2"><?php echo esc_html( $nom ); ?></span>

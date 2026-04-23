@@ -264,6 +264,23 @@ add_action( 'acf/init', function () {
 	] );
 
 	/* ─────────────────────────────────────────
+	 *  MARQUEE (Options)
+	 * ───────────────────────────────────────── */
+	acf_add_local_field_group( [
+		'key'    => 'group_tcro_marquee',
+		'title'  => 'Bandeau défilant',
+		'location' => [ [ [ 'param' => 'options_page', 'operator' => '==', 'value' => 'tcro-marquee' ] ] ],
+		'fields' => [
+			[ 'key'=>'field_tcro_marquee_theme', 'label'=>'Fond', 'name'=>'marquee_theme', 'type'=>'select', 'choices' => [ 'light' => 'Clair (sable)', 'dark' => 'Foncé (navy)' ], 'default_value' => 'light' ],
+			[ 'key'=>'field_tcro_marquee_words', 'label'=>'Mots / phrases', 'name'=>'marquee_words', 'type'=>'repeater', 'button_label'=>'Ajouter', 'min' => 0, 'instructions' => 'Chaque mot est séparé par une balle de tennis. Laisser vide pour masquer le bandeau.',
+				'sub_fields' => [
+					[ 'key'=>'field_tcro_marquee_words_mot', 'label'=>'Mot / phrase', 'name'=>'mot', 'type'=>'text' ],
+				],
+			],
+		],
+	] );
+
+	/* ─────────────────────────────────────────
 	 *  POST : Gallery
 	 * ───────────────────────────────────────── */
 	acf_add_local_field_group( [

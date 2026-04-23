@@ -16,7 +16,7 @@ $recap     = tcro_option( 'recap', [] );
 ?>
 
 <section id="courts" class="bg-ocean py-20 md:py-28">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 
 		<div class="mb-10 reveal">
 			<?php if ( $kicker ) : ?>

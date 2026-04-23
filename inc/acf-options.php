@@ -33,6 +33,7 @@ add_action( 'acf/init', function () {
 		'tcro-tenup'      => [ 'Bandeau Ten\'Up',        'Bandeau Ten\'Up' ],
 		'tcro-equipe'     => [ 'Accueil — Équipe',       'Équipe' ],
 		'tcro-articles'   => [ 'Accueil — Articles',     'Articles (intro)' ],
+		'tcro-marquee'    => [ 'Bandeau défilant',       'Bandeau défilant' ],
 		'tcro-global'     => [ 'Réglages globaux',       'Global' ],
 	];
 

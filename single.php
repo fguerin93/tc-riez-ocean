@@ -25,7 +25,7 @@ while ( have_posts() ) : the_post();
 				     class="absolute inset-0 w-full h-full object-cover"
 				     fetchpriority="high">
 				<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(14,27,46,.25) 0%,rgba(14,27,46,.55) 55%,rgba(14,27,46,.96) 100%)"></div>
-				<div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 md:px-12 pt-36 md:pt-40 pb-10 md:pb-14">
+				<div class="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 md:px-16 pt-36 md:pt-40 pb-10 md:pb-14">
 					<?php if ( $cat ) : ?>
 						<p class="flex items-center gap-2.5 text-accent text-[11px] tracking-[.25em] uppercase font-medium mb-4">
 							<span class="w-5 h-px bg-accent"></span><?php echo esc_html( $cat->name ); ?>
@@ -39,7 +39,7 @@ while ( have_posts() ) : the_post();
 				</div>
 			</header>
 		<?php else : ?>
-			<header class="bg-ocean-mid pt-32 pb-14 px-5 sm:px-8 md:px-12">
+			<header class="bg-ocean-mid pt-32 pb-14 px-5 sm:px-8 md:px-16">
 				<div class="max-w-4xl mx-auto">
 					<?php if ( $cat ) : ?>
 						<p class="flex items-center gap-2.5 text-accent text-[11px] tracking-[.25em] uppercase font-medium mb-4">
@@ -53,7 +53,7 @@ while ( have_posts() ) : the_post();
 			</header>
 		<?php endif; ?>
 
-		<div class="bg-ocean py-14 md:py-20 px-5 sm:px-8 md:px-12">
+		<div class="bg-ocean py-14 md:py-20 px-5 sm:px-8 md:px-16">
 			<div class="max-w-3xl mx-auto">
 				<div class="tcro-article text-sand/85 font-serif font-light text-lg leading-relaxed
 					[&_p]:mb-5

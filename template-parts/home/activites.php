@@ -12,7 +12,7 @@ $items     = tcro_option( 'activites_items', [] );
 ?>
 
 <section id="activites" class="py-20 md:py-28 bg-sand text-ink">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16">
 		<div class="reveal">
 			<?php if ( $kicker ) : ?>
 			<p class="flex items-center gap-2.5 text-primary-dark text-[11px] tracking-[.2em] uppercase font-medium mb-3">

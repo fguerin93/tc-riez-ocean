@@ -17,7 +17,7 @@ $groupes = [
 ?>
 
 <section id="equipe" class="bg-ocean py-20 md:py-24">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16">
 
 		<div class="mb-10 reveal">
 			<?php if ( $kicker ) : ?>

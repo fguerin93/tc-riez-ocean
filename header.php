@@ -24,7 +24,7 @@ $tenup_url   = tcro_option( 'global_tenup', 'https://tenup.fft.fr/club/61850433/
 <header id="hdr" class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
 	style="background:linear-gradient(to bottom,rgba(14,27,46,.92),transparent)">
 
-	<div class="flex items-center justify-between px-5 sm:px-8 md:px-12 py-4">
+	<div class="flex items-center justify-between max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16 py-4">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 font-display font-bold text-sand no-underline z-10 relative">
 			<?php if ( $logo && is_array( $logo ) ) : ?>
 				<img src="<?php echo esc_url( $logo['sizes']['thumbnail'] ?? $logo['url'] ); ?>"

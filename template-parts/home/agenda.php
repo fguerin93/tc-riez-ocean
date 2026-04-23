@@ -20,7 +20,7 @@ $events = get_posts( [
 ?>
 
 <section id="agenda" class="py-20 md:py-24" style="background:#1B2F47">
-	<div class="max-w-6xl mx-auto px-5 sm:px-8 md:px-12">
+	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 		<div class="flex flex-col lg:flex-row gap-10 lg:gap-20">
 
 			<div class="lg:w-72 shrink-0 reveal">
