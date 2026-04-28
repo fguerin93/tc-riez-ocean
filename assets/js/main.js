@@ -13,9 +13,9 @@
   if (hdr) {
     const onScroll = () => {
       if (window.scrollY > 50) {
-        hdr.style.cssText = 'background:rgba(14,27,46,.97);border-bottom:1px solid rgba(230,51,41,.22)';
+        hdr.style.cssText = 'background:#25130e;border-bottom:1px solid #25130e';
       } else {
-        hdr.style.cssText = 'background:linear-gradient(to bottom,rgba(14,27,46,.92),transparent)';
+        hdr.style.cssText = 'background:linear-gradient(to bottom,#25130e,transparent)';
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -46,7 +46,7 @@
 
     brg.addEventListener('click', () => (open ? closeMenu() : openMenu()));
 
-    mmenu.querySelectorAll('[data-close]').forEach((el) => {
+    mmenu.querySelectorAll('a').forEach((el) => {
       el.addEventListener('click', closeMenu);
     });
 

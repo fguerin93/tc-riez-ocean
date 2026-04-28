@@ -20,5 +20,6 @@ require_once TCRO_DIR . '/inc/acf-options.php';
 require_once TCRO_DIR . '/inc/acf-fields.php';
 require_once TCRO_DIR . '/inc/helpers.php';
 require_once TCRO_DIR . '/inc/contact-form.php';
+require_once TCRO_DIR . '/inc/seo.php';
 require_once TCRO_DIR . '/inc/seeder.php';
 require_once TCRO_DIR . '/inc/stock-photos.php';

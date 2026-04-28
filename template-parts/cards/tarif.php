@@ -37,23 +37,23 @@ if ( $populaire ) : ?>
 		<a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" rel="noopener" class="mt-7 block text-center text-xs tracking-[.12em] uppercase text-white bg-white/15 hover:bg-white/25 border border-white/30 py-3.5 transition-all"><?php echo esc_html( $cta_label ); ?> →</a>
 	</div>
 <?php else : ?>
-	<div class="border border-sand/[.07] bg-sand/[.03] hover:bg-sand/[.06] transition-colors p-7 md:p-10">
-		<p class="text-sand/40 text-[10px] tracking-[.2em] uppercase mb-2"><?php echo esc_html( $prefix ); ?></p>
-		<h3 class="font-display font-bold text-sand text-2xl mb-5"><?php echo esc_html( $nom ); ?></h3>
+	<div class="border border-ink/[.07] bg-ink/[.03] hover:bg-ink/[.06] transition-colors p-7 md:p-10">
+		<p class="text-ink/40 text-[10px] tracking-[.2em] uppercase mb-2"><?php echo esc_html( $prefix ); ?></p>
+		<h3 class="font-display font-bold text-ink text-2xl mb-5"><?php echo esc_html( $nom ); ?></h3>
 		<?php if ( $prix !== '' && $prix !== null ) : ?>
-		<div class="font-display font-black text-sand leading-none mb-1" style="font-size:2.8rem"><?php echo esc_html( $prix ); ?><span class="text-base font-light text-sand/45"> €</span></div>
+		<div class="font-display font-black text-ink leading-none mb-1" style="font-size:2.8rem"><?php echo esc_html( $prix ); ?><span class="text-base font-light text-ink/45"> €</span></div>
 		<?php endif; ?>
-		<p class="text-sand/45 text-xs mb-7"><?php echo esc_html( trim( "{$periode}" . ( $cible ? " · {$cible}" : '' ) ) ); ?></p>
-		<div class="w-7 h-px bg-sand/20 mb-5"></div>
+		<p class="text-ink/45 text-xs mb-7"><?php echo esc_html( trim( "{$periode}" . ( $cible ? " · {$cible}" : '' ) ) ); ?></p>
+		<div class="w-7 h-px bg-ink/20 mb-5"></div>
 		<?php if ( ! empty( $features ) ) : ?>
 		<ul class="space-y-3">
 			<?php foreach ( $features as $i => $f ) :
 				$is_last = ( $i === count( $features ) - 1 );
-				$border  = $is_last ? '' : 'border-b border-sand/[.06] pb-2.5'; ?>
-				<li class="flex items-center gap-2.5 text-sm text-sand/70 <?php echo esc_attr( $border ); ?>"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span><?php echo esc_html( $f['ligne'] ); ?></li>
+				$border  = $is_last ? '' : 'border-b border-ink/[.06] pb-2.5'; ?>
+				<li class="flex items-center gap-2.5 text-sm text-ink/70 <?php echo esc_attr( $border ); ?>"><span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span><?php echo esc_html( $f['ligne'] ); ?></li>
 			<?php endforeach; ?>
 		</ul>
 		<?php endif; ?>
-		<a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" rel="noopener" class="mt-7 block text-center text-xs tracking-[.12em] uppercase text-sand border border-sand/20 hover:bg-sand/10 hover:border-sand/45 py-3.5 transition-all"><?php echo esc_html( $cta_label ); ?> →</a>
+		<a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" rel="noopener" class="mt-7 block text-center text-xs tracking-[.12em] uppercase text-ink border border-ink/20 hover:bg-ink/10 hover:border-ink/45 py-3.5 transition-all"><?php echo esc_html( $cta_label ); ?> →</a>
 	</div>
 <?php endif;

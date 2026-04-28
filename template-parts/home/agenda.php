@@ -19,7 +19,7 @@ $events = get_posts( [
 ] );
 ?>
 
-<section id="agenda" class="py-20 md:py-24" style="background:#1B2F47">
+<section id="agenda" class="py-20 md:py-24" style="background:#25130E">
 	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 		<div class="flex flex-col lg:flex-row gap-10 lg:gap-20">
 
@@ -29,8 +29,8 @@ $events = get_posts( [
 					<span class="w-5 h-px bg-primary-light"></span><?php echo esc_html( $kicker ); ?>
 				</p>
 				<?php endif; ?>
-				<h2 class="font-display font-bold text-sand text-3xl md:text-4xl leading-tight mb-4"><?php echo nl2br( esc_html( $titre ) ); ?></h2>
-				<?php if ( $desc ) : ?><p class="text-sand/55 text-sm leading-relaxed mb-7"><?php echo esc_html( $desc ); ?></p><?php endif; ?>
+				<h2 class="font-display font-bold text-white text-3xl md:text-4xl leading-tight mb-4"><?php echo nl2br( esc_html( $titre ) ); ?></h2>
+				<?php if ( $desc ) : ?><p class="text-white/55 text-sm leading-relaxed mb-7"><?php echo esc_html( $desc ); ?></p><?php endif; ?>
 				<?php if ( $cta_label && $cta_url ) : ?>
 				<a href="<?php echo esc_url( $cta_url ); ?>" target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary-light text-white text-xs font-medium tracking-widest uppercase px-7 py-3.5 rounded-sm transition-all"><?php echo esc_html( $cta_label ); ?> →</a>
 				<?php endif; ?>
@@ -44,7 +44,7 @@ $events = get_posts( [
 				endforeach; wp_reset_postdata(); ?>
 			</div>
 			<?php else : ?>
-				<p class="text-sand/50">Aucun événement pour le moment.</p>
+				<p class="text-white/50">Aucun événement pour le moment.</p>
 			<?php endif; ?>
 		</div>
 	</div>

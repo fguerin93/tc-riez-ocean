@@ -16,7 +16,7 @@ $groupes = [
 ];
 ?>
 
-<section id="equipe" class="bg-ocean py-20 md:py-24">
+<section id="equipe" class="bg-[#25130E] py-20 md:py-24">
 	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16">
 
 		<div class="mb-10 reveal">
@@ -25,7 +25,7 @@ $groupes = [
 				<span class="w-5 h-px bg-primary-light"></span><?php echo esc_html( $kicker ); ?>
 			</p>
 			<?php endif; ?>
-			<h2 class="font-display font-bold text-sand leading-tight" style="font-size:clamp(26px,4vw,48px)">
+			<h2 class="font-display font-bold text-white leading-tight" style="font-size:clamp(26px,4vw,48px)">
 				<?php echo esc_html( $titre ); ?><?php if ( $titre_em ) : ?><br><em class="text-primary-light"><?php echo esc_html( $titre_em ); ?></em><?php endif; ?>
 			</h2>
 		</div>
@@ -63,7 +63,7 @@ $groupes = [
 		<?php endforeach; ?>
 
 		<?php if ( $note ) : ?>
-			<div class="reveal text-sand/50 text-sm italic font-serif mt-4 max-w-2xl">
+			<div class="reveal text-white/50 text-sm italic font-serif mt-4 max-w-2xl">
 				<?php echo wp_kses_post( $note ); ?>
 			</div>
 		<?php endif; ?>

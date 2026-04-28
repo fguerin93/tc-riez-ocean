@@ -32,7 +32,7 @@ $coachs = get_posts( [
 ] );
 ?>
 
-<section class="hero relative min-h-svh overflow-hidden flex flex-col">
+<section class="hero relative min-h-[70svh] md:min-h-[90svh] overflow-hidden flex flex-col">
 
 	<!-- Arrière-plan : image ou dégradé de secours -->
 	<?php if ( $image && is_array( $image ) ) : ?>
@@ -41,10 +41,10 @@ $coachs = get_posts( [
 			     alt=""
 			     class="w-full h-full object-cover"
 			     fetchpriority="high">
-			<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(14,27,46,.35) 0%,rgba(14,27,46,.45) 40%,rgba(14,27,46,.92) 100%)"></div>
+			<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(42,20,16,.35) 0%,rgba(42,20,16,.45) 40%,rgba(42,20,16,.92) 100%)"></div>
 		</div>
 	<?php else : ?>
-		<div class="absolute inset-0" style="background:radial-gradient(ellipse 120% 80% at 60% 30%,rgba(230,51,41,.42),transparent 70%),radial-gradient(ellipse 80% 100% at 5% 80%,rgba(27,47,71,.6),transparent 60%),linear-gradient(160deg,#0E1B2E,#1B2F47 35%,#2D4769 55%,#1B2F47 75%,#0A1524)"></div>
+		<div class="absolute inset-0" style="background:radial-gradient(ellipse 120% 80% at 60% 30%,rgba(230,51,41,.42),transparent 70%),radial-gradient(ellipse 80% 100% at 5% 80%,rgba(58,26,20,.6),transparent 60%),linear-gradient(160deg,#2A1410,#3A1A14 35%,#5A2820 55%,#3A1A14 75%,#1F0E0A)"></div>
 		<div class="court-lines absolute inset-0 pointer-events-none"></div>
 	<?php endif; ?>
 
@@ -148,7 +148,7 @@ $coachs = get_posts( [
 	<!-- Stats strip -->
 	<?php if ( ! empty( $stats ) ) : ?>
 	<div class="relative z-10 border-t border-sand/15"
-	     style="background:rgba(10,21,36,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
+	     style="background:rgba(31,14,10,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
 		<div class="max-w-[1520px] mx-auto flex items-center gap-6 sm:gap-10 px-5 sm:px-8 md:px-16 py-4 md:py-5">
 			<?php foreach ( $stats as $i => $stat ) : ?>
 				<?php if ( $i > 0 ) : ?><div class="w-px h-8 bg-sand/20"></div><?php endif; ?>

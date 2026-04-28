@@ -29,7 +29,7 @@ if ( ! $cta_url ) {
 }
 ?>
 
-<section id="articles" class="bg-ocean py-20 md:py-24">
+<section id="articles" class="bg-[#25130E] py-20 md:py-24">
 	<div class="max-w-[1520px] mx-auto px-5 sm:px-8 md:px-16">
 
 		<!-- Header : kicker gauche / titre droite -->
@@ -39,7 +39,7 @@ if ( ! $cta_url ) {
 					<span class="w-5 h-px bg-primary-light"></span><?php echo esc_html( $kicker ); ?>
 				</p>
 			<?php endif; ?>
-			<h2 class="font-display font-black text-sand uppercase tracking-tight leading-[0.95] md:text-right max-w-2xl"
+			<h2 class="font-display font-black text-white uppercase tracking-tight leading-[0.95] md:text-right max-w-2xl"
 			    style="font-size:clamp(26px,3.8vw,48px)">
 				<?php echo esc_html( $titre ); ?><?php if ( $titre_em ) : ?> <em class="text-primary-light not-italic"><?php echo esc_html( $titre_em ); ?></em><?php endif; ?>
 			</h2>
@@ -52,21 +52,20 @@ if ( ! $cta_url ) {
 				$thumb     = get_the_post_thumbnail_url( $p, 'large' );
 				$cats      = get_the_category( $p->ID );
 				$cat       = $cats ? $cats[0]->name : '';
-				$comments  = (int) get_comments_number( $p->ID );
 				$date_fr   = wp_date( 'j M Y', get_post_timestamp( $p ) );
 				// Décalage vertical façon réf (cartes impaires descendues un peu).
 				$offset    = ( $i % 2 === 1 ) ? 'lg:mt-12' : '';
 			?>
 				<a href="<?php echo esc_url( $url ); ?>" class="group block no-underline <?php echo esc_attr( $offset ); ?>">
 
-					<div class="relative overflow-hidden bg-ocean-mid mb-4" style="aspect-ratio:4/5">
+					<div class="relative overflow-hidden bg-sand mb-4" style="aspect-ratio:4/5">
 						<?php if ( $thumb ) : ?>
 							<img src="<?php echo esc_url( $thumb ); ?>"
 							     alt="<?php echo esc_attr( $p->post_title ); ?>"
 							     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
 							     loading="lazy">
 						<?php else : ?>
-							<div class="w-full h-full" style="background:linear-gradient(145deg,#1B2F47,#2D4769 50%,#0E1B2E)"></div>
+							<div class="w-full h-full" style="background:linear-gradient(145deg,#FDE4E2,#FFDB4D 50%,#FDE4E2)"></div>
 						<?php endif; ?>
 						<span class="absolute left-0 bottom-0 h-1 w-12 bg-primary transition-all duration-300 group-hover:w-20"></span>
 					</div>
@@ -75,15 +74,11 @@ if ( ! $cta_url ) {
 						<p class="text-primary-light text-[10px] tracking-[.2em] uppercase font-medium mb-2"><?php echo esc_html( $cat ); ?></p>
 					<?php endif; ?>
 
-					<h3 class="font-display font-bold text-sand uppercase tracking-tight leading-tight text-base md:text-[17px] group-hover:text-primary-light transition-colors">
+					<h3 class="font-display font-bold text-white uppercase tracking-tight leading-tight text-base md:text-[17px] group-hover:text-primary-light transition-colors">
 						<?php echo esc_html( $p->post_title ); ?>
 					</h3>
 
-					<p class="text-sand/40 text-[11px] mt-2 flex items-center gap-2">
-						<span><?php echo esc_html( $date_fr ); ?></span>
-						<span class="w-1 h-1 rounded-full bg-sand/30"></span>
-						<span><?php echo sprintf( _n( '%d commentaire', '%d commentaires', $comments, 'tcro' ), $comments ); ?></span>
-					</p>
+					<p class="text-white/40 text-[11px] mt-2"><?php echo esc_html( $date_fr ); ?></p>
 				</a>
 			<?php endforeach; ?>
 		</div>
@@ -91,7 +86,7 @@ if ( ! $cta_url ) {
 		<?php if ( $cta_lbl && $cta_url ) : ?>
 			<div class="mt-12 md:mt-16 reveal">
 				<a href="<?php echo esc_url( $cta_url ); ?>"
-					class="inline-flex items-center gap-2 text-sand border-b border-sand/30 hover:border-primary-light hover:text-primary-light text-xs tracking-widest uppercase pb-0.5 transition-all">
+					class="inline-flex items-center gap-2 text-white border-b border-white/30 hover:border-primary-light hover:text-primary-light text-xs tracking-widest uppercase pb-0.5 transition-all">
 					<?php echo esc_html( $cta_lbl ); ?> <span>→</span>
 				</a>
 			</div>

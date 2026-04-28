@@ -62,10 +62,10 @@ $cta_url     = tcro_option( 'about_cta_url', 'https://tenup.fft.fr/club/61850433
 						<div class="w-full h-full" style="background:linear-gradient(135deg,#B8261F,#E63329 45%,#FF5449 75%,#B8261F)"></div>
 					<?php endif; ?>
 				</div>
-				<div class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-5 bg-ocean px-5 py-4 sm:px-6 sm:py-5 rounded-sm shadow-xl">
-					<div class="font-display font-bold text-primary-light leading-none" style="font-size:clamp(1.8rem,4vw,2.6rem)">Depuis</div>
-					<div class="font-display font-bold text-primary-light leading-none" style="font-size:clamp(1.8rem,4vw,2.6rem)"><?php echo esc_html( $annee ); ?></div>
-					<div class="text-sand/50 text-[10px] tracking-wider uppercase mt-1">Club affilié FFT · Vendée</div>
+				<div class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-5 bg-primary px-5 py-4 sm:px-6 sm:py-5 rounded-sm shadow-xl">
+					<div class="font-display font-bold text-white leading-none" style="font-size:clamp(1.8rem,4vw,2.6rem)">Depuis</div>
+					<div class="font-display font-bold text-white leading-none" style="font-size:clamp(1.8rem,4vw,2.6rem)"><?php echo esc_html( $annee ); ?></div>
+					<div class="text-white/70 text-[10px] tracking-wider uppercase mt-1">Club affilié FFT · Vendée</div>
 				</div>
 			</div>
 		</div>

@@ -19,7 +19,7 @@ $tarifs = get_posts( [
 ] );
 ?>
 
-<section id="tarifs" class="bg-ocean py-20 md:py-28">
+<section id="tarifs" class="bg-cream py-20 md:py-28">
 	<div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-16">
 
 		<div class="text-center mb-12 reveal">
@@ -28,10 +28,10 @@ $tarifs = get_posts( [
 				<span class="w-5 h-px bg-primary-light"></span><?php echo esc_html( $kicker ); ?><span class="w-5 h-px bg-primary-light"></span>
 			</p>
 			<?php endif; ?>
-			<h2 class="font-display font-bold text-sand mb-2" style="font-size:clamp(26px,4vw,48px)"><?php echo esc_html( $titre ); ?></h2>
-			<?php if ( $sous ) : ?><p class="font-serif italic text-sand/45"><?php echo esc_html( $sous ); ?></p><?php endif; ?>
+			<h2 class="font-display font-bold text-ink mb-2" style="font-size:clamp(26px,4vw,48px)"><?php echo esc_html( $titre ); ?></h2>
+			<?php if ( $sous ) : ?><p class="font-serif italic text-ink/45"><?php echo esc_html( $sous ); ?></p><?php endif; ?>
 			<?php if ( $note ) : ?>
-				<p class="text-sand/35 text-xs mt-2"><?php echo wp_kses( $note, [ 'a' => [ 'href' => [], 'target' => [], 'class' => [] ] ] ); ?> — consultez <a href="<?php echo esc_url( $tenup ); ?>" target="_blank" class="text-primary-light underline">Ten'Up</a> pour les offres complètes</p>
+				<p class="text-ink/35 text-xs mt-2"><?php echo wp_kses( $note, [ 'a' => [ 'href' => [], 'target' => [], 'class' => [] ] ] ); ?> — consultez <a href="<?php echo esc_url( $tenup ); ?>" target="_blank" class="text-primary-light underline">Ten'Up</a> pour les offres complètes</p>
 			<?php endif; ?>
 		</div>
 
@@ -43,7 +43,7 @@ $tarifs = get_posts( [
 			endforeach; wp_reset_postdata(); ?>
 		</div>
 		<?php else : ?>
-			<p class="text-sand/50 text-center">Aucun tarif pour le moment.</p>
+			<p class="text-ink/50 text-center">Aucun tarif pour le moment.</p>
 		<?php endif; ?>
 
 	</div>

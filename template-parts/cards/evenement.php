@@ -32,24 +32,26 @@ if ( $mois_over ) {
 	$mois = '';
 }
 
-$tag  = 'div';
-$attr = '';
+$tag    = 'div';
+$attr   = '';
+$cursor = '';
 if ( $lien ) {
-	$tag  = 'a';
-	$attr = ' href="' . esc_url( $lien ) . '" target="_blank" rel="noopener"';
+	$tag    = 'a';
+	$attr   = ' href="' . esc_url( $lien ) . '" target="_blank" rel="noopener"';
+	$cursor = 'cursor-pointer';
 }
 
 $highlight_cls = $highlight ? 'border-primary' : 'border-transparent';
 ?>
-<<?php echo $tag . $attr; ?> class="flex items-center gap-4 px-4 sm:px-6 py-4 bg-sand/[.04] hover:bg-sand/[.08] border-l-2 <?php echo esc_attr( $highlight_cls ); ?> hover:border-primary transition-all cursor-pointer no-underline">
+<<?php echo $tag . $attr; ?> class="flex items-center gap-4 px-4 sm:px-6 py-4 bg-white/[.04] hover:bg-white/[.08] border-l-2 <?php echo esc_attr( $highlight_cls ); ?> hover:border-primary transition-all <?php echo esc_attr( $cursor ); ?> no-underline">
 	<div class="shrink-0 text-center w-11">
 		<div class="font-display font-bold text-primary-light text-xl leading-none"><?php echo esc_html( $jour ); ?></div>
-		<?php if ( $mois ) : ?><div class="text-sand/40 text-[9px] tracking-widest uppercase"><?php echo esc_html( $mois ); ?></div><?php endif; ?>
+		<?php if ( $mois ) : ?><div class="text-white/40 text-[9px] tracking-widest uppercase"><?php echo esc_html( $mois ); ?></div><?php endif; ?>
 	</div>
-	<div class="w-px h-8 bg-sand/10 shrink-0"></div>
+	<div class="w-px h-8 bg-white/10 shrink-0"></div>
 	<div class="flex-1 min-w-0">
-		<div class="font-display font-semibold text-sand text-sm sm:text-base truncate"><?php echo esc_html( $nom ); ?></div>
-		<?php if ( $sous_titre ) : ?><div class="text-sand/45 text-xs mt-0.5 truncate"><?php echo esc_html( $sous_titre ); ?></div><?php endif; ?>
+		<div class="font-display font-semibold text-white text-sm sm:text-base truncate"><?php echo esc_html( $nom ); ?></div>
+		<?php if ( $sous_titre ) : ?><div class="text-white/45 text-xs mt-0.5 truncate"><?php echo esc_html( $sous_titre ); ?></div><?php endif; ?>
 	</div>
 	<?php if ( $badge ) : ?>
 		<span class="hidden sm:block text-[9px] tracking-widest uppercase text-primary-light border border-primary px-2 py-1 shrink-0"><?php echo esc_html( $badge ); ?></span>

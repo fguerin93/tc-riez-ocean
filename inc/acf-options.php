@@ -22,18 +22,19 @@ add_action( 'acf/init', function () {
 		'redirect'   => true,
 	] );
 
+	// Ordre calqué sur les sections de front-page.php.
 	$sub_pages = [
 		'tcro-hero'       => [ 'Accueil — Hero',         'Hero' ],
 		'tcro-about'      => [ 'Accueil — À propos',     'À propos' ],
+		'tcro-marquee'    => [ 'Bandeau défilant',       'Bandeau défilant' ],
+		'tcro-articles'   => [ 'Accueil — Articles',     'Articles (intro)' ],
+		'tcro-equipe'     => [ 'Accueil — Équipe',       'Équipe' ],
 		'tcro-courts'     => [ 'Accueil — Terrains',     'Terrains' ],
 		'tcro-activites'  => [ 'Accueil — Activités',    'Activités' ],
 		'tcro-tarifs'     => [ 'Accueil — Tarifs',       'Tarifs' ],
+		'tcro-tenup'      => [ 'Bandeau Ten\'Up',        'Bandeau Ten\'Up' ],
 		'tcro-agenda'     => [ 'Accueil — Agenda',       'Agenda' ],
 		'tcro-contact'    => [ 'Accueil — Contact',      'Contact' ],
-		'tcro-tenup'      => [ 'Bandeau Ten\'Up',        'Bandeau Ten\'Up' ],
-		'tcro-equipe'     => [ 'Accueil — Équipe',       'Équipe' ],
-		'tcro-articles'   => [ 'Accueil — Articles',     'Articles (intro)' ],
-		'tcro-marquee'    => [ 'Bandeau défilant',       'Bandeau défilant' ],
 		'tcro-global'     => [ 'Réglages globaux',       'Global' ],
 	];
 
